@@ -53,14 +53,15 @@ class LogicSampleTests: XCTestCase {
     // パラメタライズドテスト
     
     func test_canWork() {
-        let tests: [(line: UInt, motivation: Int, hasRedBull: Bool, expect: Bool)] = [
+        typealias TestCase = (line: UInt, motivation: Int, hasRedBull: Bool, expect: Bool)
+        let testCases: [TestCase] = [
             (#line,  99, true,  false),
             (#line,  99, false, false),
-            (#line, 100, true,  true),
+            (#line, 100, true,  true ),
             (#line, 100, false, false)
         ]
         
-        for (line, motivation, hasRedBull, expect) in tests {
+        for (line, motivation, hasRedBull, expect) in testCases {
             let logic = LogicSample()
             let result = logic.canWork(motivation: motivation, hasRedBull: hasRedBull)
             XCTAssertEqual(result, expect, line: line)
